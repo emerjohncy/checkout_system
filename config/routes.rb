@@ -11,4 +11,14 @@ Rails.application.routes.draw do
   post "/catalog" => "items#create",
     as: "create_item"
   
+  get "/cart" => "cart#show",
+    as: "cart"
+  get "/reset"=> "cart#destroy",
+    as: "reset"
+
+  post "/checkout_items" => "checkout_items#create",
+    as: "create_checkout_item"
+  delete "/checkout_items/:id" => "checkout_items#destroy",
+    as: "delete_checkout_item"
+
 end

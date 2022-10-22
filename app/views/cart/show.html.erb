@@ -1,0 +1,29 @@
+<h1>Add Item</h1>
+<%= form_with model: @checkout_item, url: create_checkout_item_path do |f| %>
+    <%= f.label :item_id, "Enter SKU" %>
+    <%= f.select :item_id, options_for_select(Item.all.collect{ |item| [item.sku, item.id] }), :prompt => "Choose from the available SKUs" %>
+    <% @checkout_item.errors.full_messages_for(:item_id).each do |message| %>
+        <%= message %>
+    <% end %>
+    <br>
+    <%= f.submit "Scan" %>
+<% end %>
+
+<h1>Cart</h1>
+<% @checkout_items.each do |checkout_item| %>
+    <%= checkout_item.item.sku %>
+    <%= checkout_item.item.name %>
+    <%= checkout_item.item.price %>
+    <%= link_to "Remove Item", delete_checkout_item_path(checkout_item.id), data: { "turbo-method": :delete } %>
+    <br>
+    <br>
+<% end %>
+
+
+Subtotal: <%= @checkout.subtotal %>
+<br>
+Total: <%= @checkout.total %>
+<br>
+<br>
+<br>
+<%= link_to "Reset", reset_path %>
