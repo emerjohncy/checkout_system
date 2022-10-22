@@ -3,4 +3,6 @@ class Item < ApplicationRecord
                     uniqueness: true
     validates :name, presence: true
     validates :price, presence: true
+
+    has_many :checkout_items
 end
