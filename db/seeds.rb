@@ -30,3 +30,17 @@
 @item_four.name = "VGA adapter"
 @item_four.price = 30.00
 @item_four.save
+
+
+# Initial Free Items
+@free_item_one = FreeItem.new
+@free_item_one.quantity = 3
+@free_item_one.item_id = 3
+@free_item_one.free_item = "atv"
+@free_item_one.save
+
+@free_item_two = FreeItem.new
+@free_item_two.quantity = 1
+@free_item_two.item_id = 2
+@free_item_two.free_item = "vga"
+@free_item_two.save
