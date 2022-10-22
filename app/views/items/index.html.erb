@@ -1,0 +1,11 @@
+<h1>Catalog</h1>
+
+<% @items.each do |item| %>
+    <%= item.sku %>
+    <br>
+    <%= item.name %>
+    <br>
+    <%= item.price %>
+    <br>
+    <br>
+<% end %>
