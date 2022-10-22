@@ -17,9 +17,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_141550) do
   create_table "checkout_items", force: :cascade do |t|
     t.bigint "item_id", null: false
     t.bigint "checkout_id", null: false
-    t.integer "quantity"
-    t.float "total"
-    t.float "unit_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["checkout_id"], name: "index_checkout_items_on_checkout_id"
