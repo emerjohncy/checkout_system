@@ -1,0 +1,16 @@
+<h1>Add New Item in the Catalog</h1>
+<%= form_with model: @item, url: create_item_path do |f| %>
+    <%= f.label :sku %>
+    <%= f.text_field :sku %>
+    <% @item.errors.full_messages_for(:sku).each do |message| %>
+        <%= message %>
+    <% end %>
+    <br>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <br>
+    <%= f.label :price %>
+    <%= f.number_field :price, step: 0.01 %>
+    <br>
+    <%= f.submit %>
+<% end %>
