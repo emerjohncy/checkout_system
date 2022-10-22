@@ -3,7 +3,7 @@ class CreateFreeItems < ActiveRecord::Migration[7.0]
     create_table :free_items do |t|
       t.integer :quantity
       t.references :item, null: false, foreign_key: true
-      t.float :discount_price
+      t.string :free_item
 
       t.timestamps
     end

@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_221554) do
   create_table "free_items", force: :cascade do |t|
     t.integer "quantity"
     t.bigint "item_id", null: false
-    t.float "discount_price"
+    t.string "free_item"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_free_items_on_item_id"
