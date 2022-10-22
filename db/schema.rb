@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_22_140132) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_22_141550) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checkout_items", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "checkout_id", null: false
+    t.integer "quantity"
+    t.float "total"
+    t.float "unit_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["checkout_id"], name: "index_checkout_items_on_checkout_id"
+    t.index ["item_id"], name: "index_checkout_items_on_item_id"
+  end
 
   create_table "checkouts", force: :cascade do |t|
     t.float "subtotal"
@@ -29,4 +41,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_140132) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "checkout_items", "checkouts"
+  add_foreign_key "checkout_items", "items"
 end
