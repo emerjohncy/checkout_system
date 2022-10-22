@@ -1,4 +1,7 @@
 <h1>Catalog</h1>
+<%= link_to "Add New Item", new_item_path %>
+<br>
+<br>
 
 <% @items.each do |item| %>
     <%= item.sku %>
