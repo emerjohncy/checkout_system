@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_22_141550) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_23_015131) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bulk_orders", force: :cascade do |t|
+    t.integer "min_quantity"
+    t.bigint "item_id", null: false
+    t.float "adjusted_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_bulk_orders_on_item_id"
+  end
 
   create_table "checkout_items", force: :cascade do |t|
     t.bigint "item_id", null: false
@@ -30,6 +39,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_141550) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "free_items", force: :cascade do |t|
+    t.integer "quantity"
+    t.bigint "item_id", null: false
+    t.string "free_item"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_free_items_on_item_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "sku"
     t.string "name"
@@ -38,6 +56,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_141550) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "bulk_orders", "items"
   add_foreign_key "checkout_items", "checkouts"
   add_foreign_key "checkout_items", "items"
+  add_foreign_key "free_items", "items"
 end

@@ -1,0 +1,8 @@
+<h1>Promo Bulk Orders</h1>
+<% @bulk_orders.each do |item| %>
+    Buy at least <%= item.min_quantity %> pc/s of <%= Item.find(item.item_id).name %>
+    <br>
+    New Price: $<%= item.adjusted_price %>
+    <br>
+    <br>
+<% end %>

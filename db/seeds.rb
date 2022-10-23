@@ -22,7 +22,7 @@
 @item_three = Item.new
 @item_three.sku = "atv"
 @item_three.name = "Apple TV"
-@item_three.price = 1399.99
+@item_three.price = 109.50
 @item_three.save
 
 @item_four = Item.new
@@ -30,3 +30,24 @@
 @item_four.name = "VGA adapter"
 @item_four.price = 30.00
 @item_four.save
+
+
+# Initial Free Items Promo
+@free_item_one = FreeItem.new
+@free_item_one.quantity = 3
+@free_item_one.item_id = 3
+@free_item_one.free_item = "atv"
+@free_item_one.save
+
+@free_item_two = FreeItem.new
+@free_item_two.quantity = 1
+@free_item_two.item_id = 2
+@free_item_two.free_item = "vga"
+@free_item_two.save
+
+# Initial Bulk Order Promo
+@bulk_order_one = BulkOrder.new
+@bulk_order_one.min_quantity = 5
+@bulk_order_one.item_id = 1
+@bulk_order_one.adjusted_price = 499.99
+@bulk_order_one.save
