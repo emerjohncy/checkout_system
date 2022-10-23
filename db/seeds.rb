@@ -32,7 +32,7 @@
 @item_four.save
 
 
-# Initial Free Items
+# Initial Free Items Promo
 @free_item_one = FreeItem.new
 @free_item_one.quantity = 3
 @free_item_one.item_id = 3
@@ -44,3 +44,10 @@
 @free_item_two.item_id = 2
 @free_item_two.free_item = "vga"
 @free_item_two.save
+
+# Initial Bulk Order Promo
+@bulk_order_one = BulkOrder.new
+@bulk_order_one.min_quantity = 5
+@bulk_order_one.item_id = 1
+@bulk_order_one.adjusted_price = 499.99
+@bulk_order_one.save
