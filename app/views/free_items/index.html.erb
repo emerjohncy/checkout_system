@@ -1,0 +1,8 @@
+<h1>Promo Free Items</h1>
+<% @free_items.each do |item| %>
+    <%= item.quantity %> pc/s of <%= Item.find(item.item_id).name %>
+    <br>
+    Free Item: <%= Item.where(sku: item.free_item).first.name %>
+    <br>
+    <br>
+<% end %>
