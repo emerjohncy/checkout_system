@@ -4,7 +4,7 @@ class Item < ApplicationRecord
     validates :name, presence: true
     validates :price, presence: true
 
-    has_many :checkout_items
-    has_many :free_items
-    has_many :bulk_orders
+    has_many :checkout_items, dependent: :destroy
+    has_many :free_items, dependent: :destroy
+    has_many :bulk_orders, dependent: :destroy
 end

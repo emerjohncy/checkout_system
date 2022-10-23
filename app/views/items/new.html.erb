@@ -1,16 +1,63 @@
-<h1>Add New Item in the Catalog</h1>
-<%= form_with model: @item, url: create_item_path do |f| %>
-    <%= f.label :sku %>
-    <%= f.text_field :sku %>
-    <% @item.errors.full_messages_for(:sku).each do |message| %>
-        <%= message %>
+<div class="container-fluid w-75">
+  <div class="d-flex flex-row justify-content-start align-items-center p-4">
+    <div class="pe-2">
+      <h1>Catalog</h1>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table align-middle table-hover">
+      <thead class="table-primary text-center">
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">SKU</th>
+          <th scope="col">Item Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <% @items.each do |item| %>
+          <tr>
+            <th scope="row"><%= item.id %></th>
+            <td><%= item.sku %></td>
+            <td><%= item.name %></td>
+            <td>$<%= item.price %></td>
+            <td>
+              <button type="button" class="btn btn-danger">
+                <%= link_to "Remove", delete_item_path(item.id), data: { "turbo-method": :delete }, class: "text-white text-decoration-none" %>
+              </button>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= form_with model: @item, url: create_item_path do |f| %>
+      <div class="row g-3">
+        <div class="col-sm-3">
+          <%= f.text_field :sku, class: "form-control", placeholder: "Enter unique SKU" %>
+          <% @item.errors.full_messages_for(:sku).each do |message| %>
+            <%= message %>
+          <% end %>
+        </div>
+        <div class="col-sm">
+          <%= f.text_field :name, class: "form-control", placeholder: "Enter Item Name" %>
+          <% @item.errors.full_messages_for(:name).each do |message| %>
+            <%= message %>
+          <% end %>
+        </div>
+        <div class="col-sm">
+          <%= f.number_field :price, step: 0.01, class: "form-control", placeholder: "Enter Price" %>
+          <% @item.errors.full_messages_for(:price).each do |message| %>
+            <%= message %>
+          <% end %>
+        </div>
+        <%= f.submit "Add", class: "btn btn-success col-sm-1 mx-2" %>
+        <button type="button" class="btn btn-secondary col-sm-1 mx-2">
+          <%= link_to "Cancel", catalog_path, class: "text-white text-decoration-none" %>
+        </button>
+      </div>
     <% end %>
-    <br>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <br>
-    <%= f.label :price %>
-    <%= f.number_field :price, step: 0.01 %>
-    <br>
-    <%= f.submit %>
-<% end %>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 class Checkout < ApplicationRecord
-    has_many :checkout_items
+    has_many :checkout_items, dependent: :destroy
     before_save :get_free_items
     before_save :set_subtotal
     before_save :set_total

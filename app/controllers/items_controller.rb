@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
     end
 
     def new
+        @items = Item.all
         @item = Item.new
     end
 
@@ -15,6 +16,12 @@ class ItemsController < ApplicationController
         else
             render :new, status: :unprocessable_entity
         end
+    end
+
+    def destroy
+        @item = Item.find(params[:id])
+        @item.destroy
+        redirect_to catalog_path, status: :see_other
     end
 
     private

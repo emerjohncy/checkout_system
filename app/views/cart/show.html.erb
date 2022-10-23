@@ -1,29 +1,61 @@
-<h1>Add Item</h1>
-<%= form_with model: @checkout_item, url: create_checkout_item_path do |f| %>
-    <%= f.label :item_id, "Enter SKU" %>
-    <%= f.select :item_id, options_for_select(Item.all.collect{ |item| [item.sku, item.id] }), :prompt => "Choose from the available SKUs" %>
-    <% @checkout_item.errors.full_messages_for(:item_id).each do |message| %>
-        <%= message %>
+<div class="container-fluid w-75">
+  <div class="d-flex flex-row justify-content-between align-items-center p-4">
+    <div class="pe-2">
+      <h1>Cart</h1>
+    </div>
+    <button type="button" class="btn btn-danger">
+      <%= link_to "Clear All", reset_path, class: "text-white text-decoration-none" %>
+    </button>
+  </div>
+  <%= form_with model: @checkout_item, url: create_checkout_item_path, class: "input-group" do |f| %>
+    <%= f.select :item_id, options_for_select(Item.all.collect{ |item| [item.sku, item.id] }), {:prompt => "Choose from the available SKUs"},  {class: "form-select", id: "inputGroupSelect04"} %>
+    <%= f.submit "Scan", class: "btn btn-outline-success" %>
+  <% end %>
+  
+  <div class="list-group">
+    <% @checkout_items.each do |checkout_item| %>
+      <div class="list-group-item" aria-current="true">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">
+            <%= checkout_item.item.name %>
+          </h5>
+          <small>
+            <%= link_to "Remove", delete_checkout_item_path(checkout_item.id), data: { "turbo-method": :delete }, class: "text-decoration-none text-danger" %>
+          </small>
+        </div>
+        <p class="mb-1">
+          $<%= checkout_item.item.price %>
+        </p>
+        <small>
+          SKU: <%= checkout_item.item.sku %>
+        </small>
+      </div>
     <% end %>
-    <br>
-    <%= f.submit "Scan" %>
-<% end %>
+  </div>
 
-<h1>Cart</h1>
-<% @checkout_items.each do |checkout_item| %>
-    <%= checkout_item.item.sku %>
-    <%= checkout_item.item.name %>
-    <%= checkout_item.item.price %>
-    <%= link_to "Remove Item", delete_checkout_item_path(checkout_item.id), data: { "turbo-method": :delete } %>
-    <br>
-    <br>
-<% end %>
-
-
-Subtotal: <%= @checkout.subtotal %>
-<br>
-Total: <%= @checkout.total %>
-<br>
-<br>
-<br>
-<%= link_to "Reset", reset_path %>
+  <div class="list-group">
+    <div class="list-group-item" aria-current="true">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">
+          Subtotal
+        </h5>
+        <h5>
+          $<%= @checkout.subtotal %>
+        </h5>
+      </div>
+      <small>
+        (Total before promos are applied)
+      </small>
+    </div>
+    <div class="list-group-item" aria-current="true">
+      <div class="d-flex w-100 justify-content-between">
+        <h3 class="mb-1">
+          TOTAL
+        </h3>
+        <h3>
+          $<%= @checkout.total %>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>

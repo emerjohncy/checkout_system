@@ -1,0 +1,13 @@
+<div class="list-group-item" aria-current="true">
+    <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">
+            Free: <%= Item.where(sku: item.free_item).first.name %>
+        </h5>
+        <small>
+            <%= link_to "Remove", delete_free_item_path(item.id), data: { "turbo-method": :delete }, class: "text-decoration-none text-danger" %>
+        </small>
+    </div>
+    <small>
+        if you buy  <%= item.quantity %> pc/s of <%= Item.find(item.item_id).name %>
+    </small>
+</div>

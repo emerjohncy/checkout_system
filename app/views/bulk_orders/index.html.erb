@@ -1,8 +1,16 @@
-<h1>Promo Bulk Orders</h1>
-<% @bulk_orders.each do |item| %>
-    Buy at least <%= item.min_quantity %> pc/s of <%= Item.find(item.item_id).name %>
-    <br>
-    New Price: $<%= item.adjusted_price %>
-    <br>
-    <br>
-<% end %>
+<div class="container-fluid w-75">
+    <div class="d-flex flex-row justify-content-between align-items-center p-4">
+        <div class="pe-2">
+            <h1>Bulk Order Promos</h1>
+        </div>
+        <button type="button" class="btn btn-success">
+            <%= link_to "Add New Promo", new_bulk_order_path, class: "text-white text-decoration-none" %>
+        </button>
+    </div>
+
+    <div class="list-group">
+        <% @bulk_orders.each do |item| %>
+            <%= render "bulk_order", item: item %>
+        <% end %>
+    </div>
+</div>

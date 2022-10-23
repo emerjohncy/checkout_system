@@ -1,0 +1,32 @@
+<div class="container-fluid w-75">
+    <div class="d-flex flex-row justify-content-between align-items-center p-4">
+        <div class="pe-2">
+            <h1>Free Item Promos</h1>
+        </div>
+    </div>
+
+    <div class="list-group">
+        <% @free_items.each do |item| %>
+            <%= render "free_item", item: item%>
+        <% end %>
+    </div>
+
+    <div class="list-group">
+        <div class="list-group-item" aria-current="true">
+            <%= form_with model: @free_item, url: create_free_item_path do |f| %>
+                <h5 class="mb-1">
+                    Free:  <%= f.select :free_item, options_for_select(Item.all.collect{ |item| [item.sku] }), {:prompt => "Choose from the available SKUs"}, {} %>
+                </h5>
+                <small>
+                    if you buy <%= f.number_field :quantity, step: 1 %> pc/s of <%= f.select :item_id, options_for_select(Item.all.collect{ |item| [item.sku, item.id] }), {:prompt => "Choose from the available SKUs"}, {} %>
+                </small>
+                <div>
+                    <%= f.submit "Add", class: "btn btn-outline-success" %>
+                    <button type="button" class="btn btn-secondary col-sm-1 mx-2">
+                        <%= link_to "Cancel", free_items_path, class: "text-white text-decoration-none" %>
+                    </button>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
