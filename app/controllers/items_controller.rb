@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
     end
 
     def new
+        @items = Item.all
         @item = Item.new
     end
 
@@ -20,7 +21,7 @@ class ItemsController < ApplicationController
     def destroy
         @item = Item.find(params[:id])
         @item.destroy
-        redirect_to root_path, status: :see_other
+        redirect_to catalog_path, status: :see_other
     end
 
     private

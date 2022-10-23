@@ -1,16 +1,39 @@
-<h1>Catalog</h1>
-<%= link_to "Add New Item", new_item_path %>
-<br>
-<br>
+<div class="container-fluid w-75">
+  <div class="d-flex flex-row justify-content-start align-items-center p-4">
+    <div class="pe-2">
+      <h1>Catalog</h1>
+    </div>
+    <button type="button" class="btn btn-success">
+      <%= link_to "Add New Item", new_item_path, class: "text-white text-decoration-none" %>
+    </button>
+  </div>
 
-<% @items.each do |item| %>
-    <%= item.sku %>
-    <br>
-    <%= item.name %>
-    <br>
-    <%= item.price %>
-    <br>
-    <%= link_to "Remove Item", delete_item_path(item.id), data: { "turbo-method": :delete } %>
-    <br>
-    <br>
-<% end %>
+  <div class="table-responsive">
+    <table class="table align-middle table-hover">
+      <thead class="table-primary text-center">
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">SKU</th>
+          <th scope="col">Item Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <% @items.each do |item| %>
+          <tr>
+            <th scope="row"><%= item.id %></th>
+            <td><%= item.sku %></td>
+            <td><%= item.name %></td>
+            <td>$<%= item.price %></td>
+            <td>
+              <button type="button" class="btn btn-danger">
+                <%= link_to "Remove", delete_item_path(item.id), data: { "turbo-method": :delete }, class: "text-white text-decoration-none" %>
+              </button>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
