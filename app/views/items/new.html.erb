@@ -8,9 +8,15 @@
     <br>
     <%= f.label :name %>
     <%= f.text_field :name %>
+    <% @item.errors.full_messages_for(:name).each do |message| %>
+        <%= message %>
+    <% end %>
     <br>
     <%= f.label :price %>
     <%= f.number_field :price, step: 0.01 %>
+    <% @item.errors.full_messages_for(:price).each do |message| %>
+        <%= message %>
+    <% end %>
     <br>
     <%= f.submit %>
 <% end %>
