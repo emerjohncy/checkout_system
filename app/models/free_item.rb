@@ -1,5 +1,6 @@
 class FreeItem < ApplicationRecord
-    belongs_to :item
     validates :quantity, presence: true
-
+    validates :free_item, presence: true
+    
+    belongs_to :item
 end

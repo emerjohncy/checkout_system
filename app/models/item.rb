@@ -6,4 +6,5 @@ class Item < ApplicationRecord
 
     has_many :checkout_items
     has_many :free_items
+    has_many :bulk_orders
 end
