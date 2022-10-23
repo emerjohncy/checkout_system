@@ -5,7 +5,7 @@ class FreeItemsController < ApplicationController
     
     def new
         @free_items = FreeItem.all        
-        @free_item = FreeItem.all
+        @free_item = FreeItem.new
     end
 
     def create

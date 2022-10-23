@@ -39,5 +39,10 @@ Rails.application.routes.draw do
   # Bulk Orders Routes
   get "/bulk_orders" => "bulk_orders#index",
     as: "bulk_orders"
-
+  get "/bulk_orders/new" => "bulk_orders#new",
+    as: "new_bulk_order"
+  post "/bulk_orders" => "bulk_orders#create",
+    as: "create_bulk_order"
+  delete "/bulk_orders/:id" => "bulk_orders#destroy",
+    as: "delete_bulk_order"
 end
