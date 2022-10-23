@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     as: "new_item"
   post "/catalog" => "items#create",
     as: "create_item"
+  delete "/items/:id" => "items#destroy",
+    as: "delete_item"
   
   # Cart Routes
   get "/cart" => "cart#show",
@@ -24,10 +26,13 @@ Rails.application.routes.draw do
   delete "/checkout_items/:id" => "checkout_items#destroy",
     as: "delete_checkout_item"
   
-    resources :free_items
+  # Free Items Routes
+  # resources :free_items
+  get "/free_items" => "free_items#index",
+    as: "free_items"
 
-    # Bulk Orders Routes
-    get "/bulk_orders" => "bulk_orders#index",
-      as: "bulk_orders"
+  # Bulk Orders Routes
+  get "/bulk_orders" => "bulk_orders#index",
+    as: "bulk_orders"
 
 end

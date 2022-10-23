@@ -17,6 +17,12 @@ class ItemsController < ApplicationController
         end
     end
 
+    def destroy
+        @item = Item.find(params[:id])
+        @item.destroy
+        redirect_to root_path, status: :see_other
+    end
+
     private
 
     def item_params

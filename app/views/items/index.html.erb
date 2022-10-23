@@ -10,5 +10,7 @@
     <br>
     <%= item.price %>
     <br>
+    <%= link_to "Remove Item", delete_item_path(item.id), data: { "turbo-method": :delete } %>
+    <br>
     <br>
 <% end %>
