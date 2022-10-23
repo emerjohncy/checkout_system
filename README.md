@@ -1,24 +1,18 @@
-# README
+# Checkout System
+A simple checkout system that calculates the total amount of the items scanned depending on the promos(free item and bulk order) available.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Technologies Used
+- Ruby 3.1.2
+- Rails 7.0.3.1
+- PostgreSQL 1.1
 
-Things you may want to cover:
+## Gems Used
+- bootstrap
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Installation Instructions
+Clone the repository in your desired directory, cd into the cloned repository, and install all dependencies.
+```
+$ git clone https://github.com/emerjohncy/checkout_system.git
+$ cd checkout_system
+$ bundle install
+```
