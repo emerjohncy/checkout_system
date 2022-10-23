@@ -1,0 +1,2 @@
+class BulkOrdersController < ApplicationController
+end
