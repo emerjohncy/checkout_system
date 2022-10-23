@@ -1,8 +1,16 @@
-<h1>Promo Free Items</h1>
-<% @free_items.each do |item| %>
-    <%= item.quantity %> pc/s of <%= Item.find(item.item_id).name %>
-    <br>
-    Free Item: <%= Item.where(sku: item.free_item).first.name %>
-    <br>
-    <br>
-<% end %>
+<div class="container-fluid w-75">
+    <div class="d-flex flex-row justify-content-between align-items-center p-4">
+        <div class="pe-2">
+            <h1>Free Item Promos</h1>
+        </div>
+        <button type="button" class="btn btn-success">
+            <%= link_to "Add New Promo", new_free_item_path, class: "text-white text-decoration-none" %>
+        </button>
+    </div>
+
+    <div class="list-group">
+        <% @free_items.each do |item| %>
+            <%= render "free_item", item: item %>
+        <% end %>
+    </div>
+</div>

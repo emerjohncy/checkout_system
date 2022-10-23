@@ -14,7 +14,7 @@
   
   <div class="list-group">
     <% @checkout_items.each do |checkout_item| %>
-      <div class="list-group-item list-group-item-action" aria-current="true">
+      <div class="list-group-item" aria-current="true">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">
             <%= checkout_item.item.name %>

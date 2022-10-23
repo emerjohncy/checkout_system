@@ -27,9 +27,14 @@ Rails.application.routes.draw do
     as: "delete_checkout_item"
   
   # Free Items Routes
-  # resources :free_items
   get "/free_items" => "free_items#index",
     as: "free_items"
+  get "/free_items/new" => "free_items#new",
+    as: "new_free_item"
+  post "/free_items" => "free_items#create",
+    as: "create_free_item"
+  delete "/free_items/:id" => "free_items#destroy",
+    as: "delete_free_item"
 
   # Bulk Orders Routes
   get "/bulk_orders" => "bulk_orders#index",
