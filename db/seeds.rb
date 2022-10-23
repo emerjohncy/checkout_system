@@ -22,7 +22,7 @@
 @item_three = Item.new
 @item_three.sku = "atv"
 @item_three.name = "Apple TV"
-@item_three.price = 1399.99
+@item_three.price = 109.50
 @item_three.save
 
 @item_four = Item.new
