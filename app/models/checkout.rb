@@ -11,12 +11,13 @@ class Checkout < ApplicationRecord
     def total
         overall_total = checkout_items.collect { |checkout_item| checkout_item.valid? ? checkout_item.item.price : 0 }.sum
         
-        rules = Array.new
+        # Pricing Rules for Free Items
+        rules_free = Array.new
         FreeItem.all.each do |rule|
-            rules.push([rule.item_id, rule.quantity, rule.free_item])
+            rules_free.push([rule.item_id, rule.quantity, rule.free_item])
         end
 
-        rules.each do |rule|
+        rules_free.each do |rule|
             item_quantity = 0
             
             checkout_items.each do |item|
@@ -37,9 +38,34 @@ class Checkout < ApplicationRecord
 
                 if quantity_in_cart >= quantity_of_free
                     overall_total = overall_total - (quantity_of_free * Item.where(sku: rule[2]).first.price)
+                elsif quantity_in_cart < quantity_of_free
+                    overall_total = overall_total - (quantity_in_cart * Item.where(sku: rule[2]).first.price)
                 end
             end
         end
+
+        # Pricing Rules for Bulk Orders
+        rules_bulk = Array.new
+        BulkOrder.all.each do |rule|
+            rules_bulk.push([rule.item_id, rule.min_quantity, rule.adjusted_price])
+        end
+
+        rules_bulk.each do |rule|
+            item_quantity = 0
+
+            checkout_items.each do |item|
+                if rule[0] == item.item_id
+                    item_quantity += 1
+                end
+            end
+
+            if item_quantity >= rule[1]
+                discount_price = Item.where(id: rule[0]).first.price - rule[2]
+
+                overall_total = overall_total - (item_quantity * discount_price)
+            end
+        end
+
         overall_total
     end
 
