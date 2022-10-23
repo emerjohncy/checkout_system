@@ -26,4 +26,8 @@ Rails.application.routes.draw do
   
     resources :free_items
 
+    # Bulk Orders Routes
+    get "/bulk_orders" => "bulk_orders#index",
+      as: "bulk_orders"
+
 end
