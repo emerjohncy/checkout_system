@@ -16,7 +16,7 @@ $ git clone https://github.com/emerjohncy/checkout_system.git
 $ cd checkout_system
 $ bundle install
 ```
-Create database, migrate database, seed database to add initial data
+Create database, migrate database, and seed database to add initial data
 ```
 $ rails db:create db:migrate db:seed
 ```
