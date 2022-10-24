@@ -26,6 +26,9 @@ rails s
 ```
 The application will be running in https://localhost:3000. Open it in your browser.
 
+## ERD
+![This is an image of ERD used in the project](https://github.com/emerjohncy/checkout_system/blob/main/app/assets/images/erd.png)
+
 ## Demo
 ![This is a demo image of the project](https://github.com/emerjohncy/checkout_system/blob/main/app/assets/images/demo_one.png)
 ![This is a demo image of the project](https://github.com/emerjohncy/checkout_system/blob/main/app/assets/images/demo_two.jpg)
