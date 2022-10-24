@@ -1,10 +1,6 @@
 # Checkout System
 A simple checkout system that calculates the total amount of the items scanned depending on the promos(free item and bulk order) available.
 
-## Demo
-![This is a demo image of the project](https://github.com/emerjohncy/checkout_system/blob/main/app/assets/images/demo_one.png)
-![This is a demo image of the project](https://github.com/emerjohncy/checkout_system/blob/main/app/assets/images/demo_two.jpg)
-
 ## Technologies Used
 - Ruby 3.1.2
 - Rails 7.0.3.1
@@ -29,3 +25,7 @@ Finally, run the server
 rails s
 ```
 The application will be running in https://localhost:3000. Open it in your browser.
+
+## Demo
+![This is a demo image of the project](https://github.com/emerjohncy/checkout_system/blob/main/app/assets/images/demo_one.png)
+![This is a demo image of the project](https://github.com/emerjohncy/checkout_system/blob/main/app/assets/images/demo_two.jpg)
